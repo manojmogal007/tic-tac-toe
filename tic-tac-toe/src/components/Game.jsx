@@ -3,7 +3,7 @@ import styles from './Game.module.css'
  
 function Game() {
   const [board, setBoard] = useState(Array(9).fill(null));
-  const [xIsNext, setXIsNext] = useState(true);
+  const [next, setnext] = useState(true);
 
     // sets newboard and next player
 
@@ -15,9 +15,9 @@ function Game() {
     if (newBoard[index] || calculateWinner(newBoard)) {
       return;
     }
-    newBoard[index] = xIsNext ? 'X' : 'O';
+    newBoard[index] = next ? 'X' : 'O';
     setBoard(newBoard);
-    setXIsNext(!xIsNext);
+    setnext(!next);
   };
 
 //   Calculates winner
@@ -38,7 +38,7 @@ function Game() {
 
   const handlerestart=()=>{
     setBoard(Array(9).fill(null))
-    setXIsNext(true)
+    setnext(true)
   }
 
  //Checks who is winner
@@ -47,7 +47,7 @@ function Game() {
 
   //sets status if calculateWinner return winner then it show winner else shows next palyer
 
-  const status = winner ? `Congratulations! Winner is player ${winner}.` : `Next player : ${xIsNext ? 'X' : 'O'}`;
+  const status = winner ? `Congratulations! Winner is player ${winner}.` : `Current player : ${next ? 'X' : 'O'}`;
 
   
   return (
